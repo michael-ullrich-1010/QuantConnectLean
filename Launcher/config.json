@@ -6,7 +6,7 @@
   "save-backtest-results": true,
 
   // Algorithm configuration
-  "algorithm-type-name": "MACDTrendAlgorithm",
+  "algorithm-type-name": "TickDataFilteringAlgorithm",
   "algorithm-language": "CSharp",
   "algorithm-location": "Michael.Algorithm.CSharp.dll",
 
