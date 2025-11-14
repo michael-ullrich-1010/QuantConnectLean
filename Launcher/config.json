@@ -1,105 +1,39 @@
 {
-  "environment": "backtesting", // or "live-interactive", "live-interactive-iqfeed"
-
-
-  "backtest-results-destination-folder": "bin/Debug/backtests",
-  "save-backtest-results": true,
-
-  // Algorithm configuration
-  "algorithm-type-name": "TickDataFilteringAlgorithm",
+  "environment": "live-paper",
+  "algorithm-type-name": "MichaelTest",
   "algorithm-language": "CSharp",
   "algorithm-location": "Michael.Algorithm.CSharp.dll",
 
-  // Engine configuration
-  "data-folder": "../../../Data/",
-  "debugging": false,
-  "debugging-method": "LocalCmdline",
+  "data-folder": "../../../Data",
+  "data-provider": "DefaultDataProvider",
 
-  // Handlers
-  "log-handler": "QuantConnect.Logging.CompositeLogHandler",
-  "messaging-handler": "QuantConnect.Messaging.Messaging",
-  "job-queue-handler": "QuantConnect.Queues.JobQueue",
-  "api-handler": "QuantConnect.Api.Api",
-  "map-file-provider": "QuantConnect.Data.Auxiliary.LocalDiskMapFileProvider",
-  "factor-file-provider": "QuantConnect.Data.Auxiliary.LocalDiskFactorFileProvider",
-  "data-provider": "QuantConnect.Lean.Engine.DataFeeds.DefaultDataProvider",
-  "data-channel-provider": "DataChannelProvider",
-  "object-store": "QuantConnect.Lean.Engine.Storage.LocalObjectStore",
-  "data-aggregator": "QuantConnect.Lean.Engine.DataFeeds.AggregationManager",
-
-  // Limits
-  "symbol-minute-limit": 10000,
-  "symbol-second-limit": 10000,
-  "symbol-tick-limit": 10000,
-
-  "ignore-unknown-asset-holdings": true,
-  "show-missing-data-logs": false,
-  "maximum-warmup-history-days-look-back": 5,
-  "maximum-data-points-per-chart-series": 1000000,
-  "maximum-chart-series": 30,
-  "force-exchange-always-open": false,
-
-  // QuantConnect API
   "job-user-id": "0",
   "api-access-token": "",
-  "job-organization-id": "",
 
-  // Interactive Brokers configuration
-  "ib-account": "",
+  "live-mode": true,
+  "live-mode-brokerage": "InteractiveBrokersBrokerage",
+  "data-queue-handler": "InteractiveBrokersBrokerage",
+
+  "setup-handler": "ConsoleSetupHandler",
+  "result-handler": "LiveTradingResultHandler",
+  "data-feed-handler": "LiveTradingDataFeed",
+  "real-time-handler": "LiveTradingRealTimeHandler",
+  "transaction-handler": "BrokerageTransactionHandler",
+  "history-provider": "BrokerageHistoryProvider",
+  "api-handler": "LocalApi",
+
+  "desktop-http-port": "1234",
+
+  "ib-account": "YOUR_IB_ACCOUNT_ID",
   "ib-user-name": "",
   "ib-password": "",
+  "ib-agent-description": "Individual",
+  "ib-trading-mode": "paper",
   "ib-host": "127.0.0.1",
   "ib-port": "4002",
-  "ib-agent-description": "Individual",
   "ib-tws-dir": "C:\\Jts",
-  "ib-trading-mode": "paper", // "paper" or "live"
-  "ib-enable-delayed-streaming-data": false,
-  "ib-weekly-restart-utc-time": "22:00:00",
-  "ib-financial-advisors-group-filter": "",
+  "ib-version": "978",
 
-  // Parameters (optional algorithm parameters)
-  "parameters": {
-    "ema-fast": 10,
-    "ema-slow": 20
-  },
-
-  // Supported languages for regression tests
-  "regression-test-languages": [ "CSharp", "Python" ],
-
-  // Environments
-  "environments": {
-    "backtesting": {
-      "live-mode": false,
-      "setup-handler": "QuantConnect.Lean.Engine.Setup.BacktestingSetupHandler",
-      "result-handler": "QuantConnect.Lean.Engine.Results.BacktestingResultHandler",
-      "data-feed-handler": "QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed",
-      "real-time-handler": "QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler",
-      "history-provider": [ "QuantConnect.Lean.Engine.HistoricalData.SubscriptionDataReaderHistoryProvider" ],
-      "transaction-handler": "QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler"
-    },
-
-    "live-interactive": {
-      "live-mode": true,
-      "live-mode-brokerage": "InteractiveBrokersBrokerage",
-      "setup-handler": "QuantConnect.Lean.Engine.Setup.BrokerageSetupHandler",
-      "result-handler": "QuantConnect.Lean.Engine.Results.LiveTradingResultHandler",
-      "data-feed-handler": "QuantConnect.Lean.Engine.DataFeeds.LiveTradingDataFeed",
-      "data-queue-handler": [ "InteractiveBrokersBrokerage" ],
-      "real-time-handler": "QuantConnect.Lean.Engine.RealTime.LiveTradingRealTimeHandler",
-      "transaction-handler": "QuantConnect.Lean.Engine.TransactionHandlers.BrokerageTransactionHandler",
-      "history-provider": [ "BrokerageHistoryProvider", "SubscriptionDataReaderHistoryProvider" ]
-    },
-
-    "live-interactive-iqfeed": {
-      "live-mode": true,
-      "live-mode-brokerage": "InteractiveBrokersBrokerage",
-      "setup-handler": "QuantConnect.Lean.Engine.Setup.BrokerageSetupHandler",
-      "result-handler": "QuantConnect.Lean.Engine.Results.LiveTradingResultHandler",
-      "data-feed-handler": "QuantConnect.Lean.Engine.DataFeeds.LiveTradingDataFeed",
-      "data-queue-handler": [ "QuantConnect.IQFeed.IQFeedDataQueueHandler" ],
-      "real-time-handler": "QuantConnect.Lean.Engine.RealTime.LiveTradingRealTimeHandler",
-      "transaction-handler": "QuantConnect.Lean.Engine.TransactionHandlers.BrokerageTransactionHandler",
-      "history-provider": [ "QuantConnect.IQFeed.IQFeedDataQueueHandler", "SubscriptionDataReaderHistoryProvider" ]
-    }
-  }
+  "close-automatically": true,
+  "maximum-warmup-history-days": 5
 }

@@ -22,6 +22,7 @@ using QuantConnect.Logging;
 using QuantConnect.Packets;
 using QuantConnect.Python;
 using QuantConnect.Util;
+using QuantConnect.Brokerages.InteractiveBrokers;
 
 namespace QuantConnect.Lean.Launcher
 {
@@ -59,6 +60,8 @@ namespace QuantConnect.Lean.Launcher
 
             //Name thread for the profiler:
             Thread.CurrentThread.Name = "Algorithm Analysis Thread";
+
+            Composer.Instance.AddPart(typeof(InteractiveBrokersBrokerage).Assembly);
 
             Initializer.Start();
             leanEngineSystemHandlers = Initializer.GetSystemHandlers();

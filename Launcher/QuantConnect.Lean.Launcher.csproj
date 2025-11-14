@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Michael.Algorithm.CSharp\Michael.Algorithm.CSharp.csproj" />
-    <ProjectReference Include="..\..\Brokerages.InteractiveBrokers\QuantConnect.InteractiveBrokersBrokerage\QuantConnect.InteractiveBrokersBrokerage.csproj" />
+    <ProjectReference Include="..\..\Brokerages.InteractiveBrokers\QuantConnect.InteractiveBrokersBrokerage\QuantConnect.InteractiveBrokersBrokerage.csproj">
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Algorithm.CSharp\QuantConnect.Algorithm.CSharp.csproj" />
     <ProjectReference Include="..\AlgorithmFactory\QuantConnect.AlgorithmFactory.csproj" />
     <ProjectReference Include="..\Algorithm\QuantConnect.Algorithm.csproj" />
